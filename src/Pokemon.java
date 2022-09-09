@@ -1,6 +1,6 @@
 import java.util.*;
 public class Pokemon {
-    private String name;
+    private String name;//test
     private int level;
     private Attack[] attacks;
     private int health;
