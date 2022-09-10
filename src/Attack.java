@@ -13,4 +13,12 @@ public class Attack {
             opponent.setHealth(0);
         }
     }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
