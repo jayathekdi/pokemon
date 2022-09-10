@@ -30,4 +30,12 @@ public class Item {
         }
         return false;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
