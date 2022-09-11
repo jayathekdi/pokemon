@@ -23,7 +23,7 @@ public class Item {
         }
 
         if (pokemon.getHealth() + healing <= pokemon.getLevel() * 3) { // if the pokemon is not at max health
-            pokemon.setHealth() = pokemon.getHealth() + healing;
+            pokemon.setHealth(pokemon.getHealth() + healing);
         }
         else {
             pokemon.setHealth(pokemon.getHealth());
