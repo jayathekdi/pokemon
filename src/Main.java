@@ -75,15 +75,20 @@ public class Main {
         System.out.println("______________________________");
         System.out.println("******************************");
     }
-    public static void pokemonMenu(Pokemon[] allPokemons){
+    public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
+        // print the menu
         System.out.println("******************************\n*Pokemon                     *\n*----------------------------*");
         String largestLevel = "";
         for(int i = 0; i < allPokemons.length; i++){
+            if (allPokemons[i].isCurrent())
+                continue;
             if(allPokemons[i].getLevel() > allPokemons[i + 1].getLevel()){
                 largestLevel = Integer.toString(allPokemons[i].getLevel());
             }
         }
-        for(int i = 0; i <= allPokemons.length; i++){
+        for(int i = 0; i < allPokemons.length; i++){
+            if (allPokemons[i].isCurrent())
+                continue;
             System.out.print("*Lvl");
             for (int k = Integer.toString(allPokemons[i].getLevel()).length(); k <= largestLevel.length(); k++){
                 System.out.print(" ");
@@ -98,6 +103,25 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
+
+        // take in user input for which pokemon they would like to choose
+        Scanner input = new Scanner(System.in);
+        System.out.print("Which Pokemon would you like to choose? ");
+        String response = input.nextLine();
+        // change pokemon
+        for (int i = 0; i < allPokemons.length; i++) {
+            if (allPokemons[i].getName().equals(response)) {
+                if (allPokemons[i].isCurrent())
+                    return allPokemons[i];
+                else {
+                    currentPokemon.setCurrent(false);
+                    allPokemons[i].setCurrent(true);
+                    return allPokemons[i];
+                }
+            }
+        }
+        return currentPokemon;
+
     }
     public static void bag(Item[] bag){
         System.out.println("******************************\n*Bag                         *\n*----------------------------*");
