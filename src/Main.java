@@ -21,7 +21,7 @@ public class Main {
 
     }
 
-    public static void printBattle(Pokemon pokemon, Pokemon opponent) {
+    public static void printBattle(Pokemon pokemon, Pokemon opponent) { //test
         System.out.println("******************************");
         int opponentNameAndLevel = 23 - opponent.getName().length() - Integer.toString(opponent.getLevel()).length();
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
