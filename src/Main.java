@@ -21,10 +21,6 @@ public class Main {
 
     }
 
-    public static void useItem(Item item, Pokemon pokemon) {
-        item.use(pokemon);
-    }
-
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
         Attack[] attacks = opponent.getAttacks();
         Random random = new Random();
@@ -123,9 +119,11 @@ public class Main {
         return currentPokemon;
 
     }
-    public static void bag(Item[] bag){
+    public static void bag(Item[] bag, Pokemon pokemon){
         System.out.println("******************************\n*Bag                         *\n*----------------------------*");
         for(int i = 0; i <= bag.length; i++){
+            if (bag[i].getQuantity() == 0)
+                continue;
             System.out.print("*" + bag[i].getQuantity() + "x " + bag[i].getName());
             for(int j = 0; j < 26 - bag[i].getName().length() - Integer.toString(bag[i].getQuantity()).length(); j++){
                 System.out.print(" ");
@@ -136,6 +134,17 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
+        // take in user input for which pokemon they would like to choose
+        Scanner input = new Scanner(System.in);
+        System.out.print("Which item would you like to choose? ");
+        String response = input.nextLine();
+        for (int i = 0; i < bag.length; i++) {
+            if (bag[i].getName().equals(response) && bag[i].getQuantity() > 0) {
+                bag[i].use(pokemon);
+            }
+            else
+                System.out.println("That item does not exist.");
+        }
     }
     public static void attacksMenu(Attack[] attacks){
         System.out.println("******************************\n*Attacks                     *\n*----------------------------*");
