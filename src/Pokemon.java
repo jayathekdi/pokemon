@@ -49,4 +49,12 @@ public class Pokemon {
         //opponent.setHealth() -= attack.getDamageLevel;
         //
     }
+
+    public boolean isCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(boolean isCurrent) {
+        this.isCurrent = isCurrent;
+    }
 }
