@@ -33,7 +33,7 @@ public class Main {
         Attack[] snorlaxAttacks = new Attack[]{shockWave, gastroAcid, auraSphere, toxicSpikes};
         Pokemon charmander = new Pokemon("Charmander", 60, charmanderAttacks, false);
         Pokemon ditto = new Pokemon("Ditto", 55, dittoAttacks, false);
-        Pokemon eevee = new Pokemon("Eevee", 3, eeveeAttacks, false);
+        Pokemon eevee = new Pokemon("Eevee", 3, eeveeAttacks, true);
         Pokemon squirtle = new Pokemon("Squirtle", 28, squirtleAttacks, false);
         Pokemon pikachu = new Pokemon("Pikachu", 110, pikachuAttacks, false);
         Pokemon snorlax = new Pokemon("Snorlax", 50, snorlaxAttacks, false);
@@ -43,7 +43,9 @@ public class Main {
         Item pokeball = new Item("Pokeball", 0, 1);
         Item superPotion = new Item("SuperPotion", 100, 2);
         Item[] bag = new Item[]{potion, pokeball, superPotion};
-        bag(bag, eevee);
+        //bag(bag, eevee);
+        Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
+        pokemonMenu(allPokemons, eevee);
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -100,7 +102,7 @@ public class Main {
         // print the menu
         System.out.println("******************************\n*Pokemon                     *\n*----------------------------*");
         String largestLevel = "";
-        for(int i = 0; i < allPokemons.length; i++){
+        for(int i = 0; i < allPokemons.length - 1; i++){
             if (allPokemons[i].isCurrent())
                 continue;
             if(allPokemons[i].getLevel() > allPokemons[i + 1].getLevel()){
@@ -115,12 +117,12 @@ public class Main {
                 System.out.print(" ");
             }
             System.out.print(allPokemons[i].getLevel() + " " + allPokemons[i].getName());
-            for(int j = 0; j < 23 - allPokemons[i].getName().length() - Integer.toString(allPokemons[i].getLevel()).length(); j++){
+            for(int j = 0; j < 23 - allPokemons[i].getName().length() - largestLevel.length(); j++){
                 System.out.print(" ");
             }
             System.out.println("*");
         }
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 5; i++){
             System.out.println("*                            *");
         }
         System.out.println("******************************");
