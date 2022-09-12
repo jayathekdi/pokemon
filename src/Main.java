@@ -1,24 +1,43 @@
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        /*
-        Attack flameBall =
-        Attack
-        Attacks[] charmanderAttacks =
-        Attacks[] dittoAttacks =
-        Attacks[] evieAttacks =
-        Attacks[] squirtleAttacks =
-        Attacks[] pikachuAttacks =
-        Attacks[] snorlaxAttacks =
+        Attack flameBall = new Attack("FlameBall", 50);
+        Attack karateChop = new Attack("KarateChop", 293);
+        Attack whirlWind = new Attack("WhirlWind", 30);
+        Attack headButt = new Attack("HeadButt", 6);
+        Attack bodySlam = new Attack("BodySlam", 29);
+        Attack bubbleBeam = new Attack("BubbleBeam", 53);
+        Attack thunderShock = new Attack("ThunderShock", 18);
+        Attack hypnosis = new Attack("Hypnosis", 376);
+        Attack eggBomb = new Attack("eggBomb", 2);
+        Attack poisonLick = new Attack("poisonLick", 42);
+        Attack rainDance = new Attack("RainDance", 563);
+        Attack heatWave = new Attack("HeatWave", 3);
+        Attack revenge = new Attack("Revenge", 15);
+        Attack dive = new Attack("Dive", 6);
+        Attack blazeKick = new Attack("BlazeKick", 92);
+        Attack iceBall = new Attack("IceBall", 26);
+        Attack poisonFang = new Attack("poisonFang", 35);
+        Attack blastBurn = new Attack("BlastBurn", 87);
+        Attack tickle = new Attack("Tickle", 16);
+        Attack cosmicPower = new Attack("CosmicPower", 124);
+        Attack shockWave = new Attack("shockWave", 84);
+        Attack gastroAcid = new Attack("gastroAcid", 16);
+        Attack auraSphere = new Attack("AuraSphere", 25);
+        Attack toxicSpikes = new Attack("ToxicSpikes", 73);
+        Attack[] charmanderAttacks = new Attack[]{flameBall, karateChop, whirlWind, headButt};
+        Attack[] dittoAttacks = new Attack[]{bodySlam, bubbleBeam, thunderShock, hypnosis};
+        Attack[] eeveeAttacks = new Attack[]{eggBomb, poisonLick, rainDance, heatWave};
+        Attack[] squirtleAttacks = new Attack[]{revenge, dive, blazeKick, iceBall};
+        Attack[] pikachuAttacks = new Attack[]{poisonFang, blastBurn, tickle, cosmicPower};
+        Attack[] snorlaxAttacks = new Attack[]{shockWave, gastroAcid, auraSphere, toxicSpikes};
         Pokemon charmander = new Pokemon("Charmander", 60, charmanderAttacks, false);
         Pokemon ditto = new Pokemon("Ditto", 55, dittoAttacks, false);
-        Pokemon evie = new Pokemon("Evie", 3, evieAttacks, false);
+        Pokemon eevee = new Pokemon("Eevee", 3, eeveeAttacks, false);
         Pokemon squirtle = new Pokemon("Squirtle", 28, squirtleAttacks, false);
         Pokemon pikachu = new Pokemon("Pikachu", 110, pikachuAttacks, false);
         Pokemon snorlax = new Pokemon("Snorlax", 50, snorlaxAttacks, false);
-         */
         Scanner input = new Scanner(System.in);
-
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
