@@ -45,7 +45,7 @@ public class Main {
         Item[] bag = new Item[]{potion, pokeball, superPotion};
         //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
-        pokemonMenu(allPokemons, eevee);
+        printBattle(eevee, eevee);
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -65,38 +65,28 @@ public class Main {
         System.out.println("*");
         System.out.print("*HP: " + opponent.getLevel());
         int opponentHP = 25 - Integer.toString(opponent.getLevel()).length();
-        for (int i = 0; i < opponentHP; i++) {
+        for (int i = 0; i < opponentHP - 1; i++) {
             System.out.print(" ");
         }
         System.out.println("*");
-        for (int i = 0; i <= 2; i++) {
-            System.out.print("*");
-            for (int j = 0; j < 30; j++) {
-                if (i == 0 && j == 24) {
-                    System.out.print("0    *");
-                    break;
-                } else if (i == 0) {
-                    System.out.print(" ");
-                }
-                if (i == 1 && j == 23) {
-                    System.out.print("-|-   *");
-                    break;
-                } else if (i == 1) {
-                    System.out.print(" ");
-                }
-                if (i == 2 && j == 23) {
-                    System.out.print("/ \\   *");
-                    break;
-                } else if (i == 2) {
-                    System.out.print(" ");
-                }
-            }
+        System.out.println("*                        0   *\n*                       -|-  *\n*                       / \\  *\n*                            *");
+        System.out.println("*   0                        *\n*  -|-                       *\n*  / \\                       *");
+        String pokemonAndLevelLength = pokemon.getName() + " Lvl " + pokemon.getLevel();
+        String HPLength = "HP: " + pokemon.getHealth();
+        System.out.print("*");
+        for(int i = 0; i < 28 - pokemonAndLevelLength.length(); i++){
+            System.out.print(" ");
         }
-        System.out.println("*                            *");
-        System.out.println("*    0                       *");
-        //finish other two body lines
+        System.out.println(pokemonAndLevelLength + "*");
+        System.out.print("*");
+        for(int i = 0; i < 28 - HPLength.length(); i++){
+            System.out.print(" ");
+        }
+        System.out.println(HPLength + "*");
         System.out.println("______________________________");
+        //finish adding attack and move output statements -- FIGURE OUT HOW TO SIZE PRINT LENGTH OF TEXT AND FORMAT IT WITH EVERYTHING ELSE
         System.out.println("******************************");
+
     }
     public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
         // print the menu
