@@ -38,6 +38,12 @@ public class Main {
         Pokemon pikachu = new Pokemon("Pikachu", 110, pikachuAttacks, false);
         Pokemon snorlax = new Pokemon("Snorlax", 50, snorlaxAttacks, false);
         Scanner input = new Scanner(System.in);
+        //attacksMenu(eeveeAttacks, eevee);
+        Item potion = new Item("Potion", 50, 3);
+        Item pokeball = new Item("Pokeball", 0, 1);
+        Item superPotion = new Item("SuperPotion", 100, 2);
+        Item[] bag = new Item[]{potion, pokeball, superPotion};
+        bag(bag, eevee);
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -140,7 +146,7 @@ public class Main {
     }
     public static String bag(Item[] bag, Pokemon pokemon){
         System.out.println("******************************\n*Bag                         *\n*----------------------------*");
-        for(int i = 0; i <= bag.length; i++){
+        for(int i = 0; i < bag.length; i++){
             if (bag[i].getQuantity() == 0)
                 continue;
             System.out.print("*" + bag[i].getQuantity() + "x " + bag[i].getName());
@@ -169,7 +175,7 @@ public class Main {
     }
     public static String attacksMenu(Attack[] attacks, Pokemon opponent){
         System.out.println("******************************\n*Attacks                     *\n*----------------------------*");
-        for(int i = 0; i <= attacks.length; i++){
+        for(int i = 0; i < attacks.length; i++){
             System.out.print("*" + attacks[i].getName());
             for(int j = 0; j < 28 - attacks[i].getName().length(); j++){
                 System.out.print(" ");
