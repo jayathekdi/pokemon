@@ -119,7 +119,7 @@ public class Main {
         return currentPokemon;
 
     }
-    public static void bag(Item[] bag, Pokemon pokemon){
+    public static String bag(Item[] bag, Pokemon pokemon){
         System.out.println("******************************\n*Bag                         *\n*----------------------------*");
         for(int i = 0; i <= bag.length; i++){
             if (bag[i].getQuantity() == 0)
@@ -134,19 +134,21 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
-        // take in user input for which pokemon they would like to choose
+        // take in user input for which item they would like to choose
         Scanner input = new Scanner(System.in);
         System.out.print("Which item would you like to choose? ");
         String response = input.nextLine();
         for (int i = 0; i < bag.length; i++) {
             if (bag[i].getName().equals(response) && bag[i].getQuantity() > 0) {
                 bag[i].use(pokemon);
+                return pokemon.getName() + " used " + bag[i].getName();
             }
             else
                 System.out.println("That item does not exist.");
         }
+        return pokemon.getName() + " chose an item that doesn't exist.";
     }
-    public static void attacksMenu(Attack[] attacks){
+    public static String attacksMenu(Attack[] attacks, Pokemon opponent){
         System.out.println("******************************\n*Attacks                     *\n*----------------------------*");
         for(int i = 0; i <= attacks.length; i++){
             System.out.print("*" + attacks[i].getName());
@@ -159,6 +161,17 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
+        // take in user input for which attack they would like to choose
+        Scanner input = new Scanner(System.in);
+        System.out.print("Which attack would you like to choose? ");
+        String response = input.nextLine();
+        for (int i = 0; i < attacks.length; i++) {
+            if (attacks[i].getName().equals(response)) {
+                attacks[i].use(opponent);
+                return " used " + attacks[i].getName();
+            }
+        }
+        return " chose an attack that doesn't exist.";
     }
 }
 
