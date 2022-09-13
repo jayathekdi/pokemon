@@ -45,45 +45,7 @@ public class Main {
         Item[] bag = new Item[]{potion, pokeball, superPotion};
         //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
-        pokemonMenu(allPokemons, eevee);
-
-        // start here
-        enum State {Bag, Battle, Attack, Pokemon};
-        State gameState;
-        // starting pokemon is Eevee
-        Pokemon currentPokemon = eevee;
-        Pokemon opponent = new Pokemon("Mewtwo",40,squirtleAttacks,false);
-        while (currentPokemon.getHealth() > 0) {
-            gameState = State.Battle;
-            printBattle(currentPokemon, opponent, "");
-            // in progress
-        }
-
-
-
-
-        /*
-        Enum state = {Bag, Battle, Attack, Pokemon}
-Main method
-//currentPokemon = OUR Pokemon
-Pokemon currentPokemon
-Initialize bag (Item[] bag)
-Declare and initialize Pokemon objects (6) (Pokemon[] pokemons)
-Initialization of opponent’s Pokemon object AFTER getting user Pokemon choice//figure out algorithm
-Gameplay (while currentPokemon.getHealth() > 0)
-State = Battle
-printBattle
-Take in input for what the user wants to do (according to this, update state)
-switch (state)
-Case: bag, attack, pokemon, call corresponding methods
-State = battle
-printBattle
-Check opponent’s health (if health is 0, end game because user won)
-Opponent’s turn
-Restart loop
-
-         */
-
+        printBattle(eevee, eevee);
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -93,7 +55,7 @@ Restart loop
         attacks[num].use(currentPokemon);
     }
 
-    public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
+    public static void printBattle(Pokemon pokemon, Pokemon opponent) { //test
         System.out.println("******************************");
         int opponentNameAndLevel = 23 - opponent.getName().length() - Integer.toString(opponent.getLevel()).length();
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
@@ -103,38 +65,28 @@ Restart loop
         System.out.println("*");
         System.out.print("*HP: " + opponent.getLevel());
         int opponentHP = 25 - Integer.toString(opponent.getLevel()).length();
-        for (int i = 0; i < opponentHP; i++) {
+        for (int i = 0; i < opponentHP - 1; i++) {
             System.out.print(" ");
         }
         System.out.println("*");
-        for (int i = 0; i <= 2; i++) {
-            System.out.print("*");
-            for (int j = 0; j < 30; j++) {
-                if (i == 0 && j == 24) {
-                    System.out.print("0    *");
-                    break;
-                } else if (i == 0) {
-                    System.out.print(" ");
-                }
-                if (i == 1 && j == 23) {
-                    System.out.print("-|-   *");
-                    break;
-                } else if (i == 1) {
-                    System.out.print(" ");
-                }
-                if (i == 2 && j == 23) {
-                    System.out.print("/ \\   *");
-                    break;
-                } else if (i == 2) {
-                    System.out.print(" ");
-                }
-            }
+        System.out.println("*                        0   *\n*                       -|-  *\n*                       / \\  *\n*                            *");
+        System.out.println("*   0                        *\n*  -|-                       *\n*  / \\                       *");
+        String pokemonAndLevelLength = pokemon.getName() + " Lvl " + pokemon.getLevel();
+        String HPLength = "HP: " + pokemon.getHealth();
+        System.out.print("*");
+        for(int i = 0; i < 28 - pokemonAndLevelLength.length(); i++){
+            System.out.print(" ");
         }
-        System.out.println("*                            *");
-        System.out.println("*    0                       *");
-        //finish other two body lines
+        System.out.println(pokemonAndLevelLength + "*");
+        System.out.print("*");
+        for(int i = 0; i < 28 - HPLength.length(); i++){
+            System.out.print(" ");
+        }
+        System.out.println(HPLength + "*");
         System.out.println("______________________________");
+        //finish adding attack and move output statements -- FIGURE OUT HOW TO SIZE PRINT LENGTH OF TEXT AND FORMAT IT WITH EVERYTHING ELSE
         System.out.println("******************************");
+
     }
     public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
         // print the menu
