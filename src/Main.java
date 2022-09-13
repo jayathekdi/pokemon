@@ -44,6 +44,8 @@ public class Main {
         Item superPotion = new Item("SuperPotion", 100, 2);
         Item[] bag = new Item[]{potion, pokeball, superPotion};
         //bag(bag, eevee);
+        printBattle(eevee, eevee, "Eevee usevee used attackE");
+        printBattle(eevee, eevee, "Eevee");
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
         pokemonMenu(allPokemons, eevee);
 
@@ -69,16 +71,24 @@ public class Main {
     }
 
     public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
-        System.out.println("******************************");
-        int opponentNameAndLevel = 23 - opponent.getName().length() - Integer.toString(opponent.getLevel()).length();
+        int statementLength;
+        if(statement.length() < 20){
+            statementLength = 30;
+        }
+        else{
+            statementLength = statement.length() + 10;
+        }
+        for(int i = 0; i < statementLength; i++){
+            System.out.print("*");
+        }
+        System.out.println();
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
-        for (int i = 0; i < opponentNameAndLevel; i++) {
+        for (int i = 6 + opponent.getName().length() + Integer.toString(opponent.getLevel()).length(); i < statementLength - 1; i++) {
             System.out.print(" ");
         }
         System.out.println("*");
         System.out.print("*HP: " + opponent.getLevel());
-        int opponentHP = 25 - Integer.toString(opponent.getLevel()).length();
-        for (int i = 0; i < opponentHP - 1; i++) {
+        for (int i = 5 + Integer.toString(opponent.getHealth()).length(); i < statementLength - 1; i++) {
             System.out.print(" ");
         }
         System.out.println("*");
@@ -96,9 +106,24 @@ public class Main {
             System.out.print(" ");
         }
         System.out.println(HPLength + "*");
-        System.out.println("______________________________");
-        //finish adding attack and move output statements -- FIGURE OUT HOW TO SIZE PRINT LENGTH OF TEXT AND FORMAT IT WITH EVERYTHING ELSE
-        System.out.println("******************************");
+        for(int i = 0; i < statementLength; i++){
+            System.out.print("_");
+        }
+        System.out.println();
+        System.out.print("*" + statement);
+        for(int i = statement.length(); i < 20; i++){
+            System.out.print(" ");
+        }
+        System.out.println("|Atk|Bag*");
+        System.out.print("*");
+        for(int i = 0; i < statementLength - 10; i++ ){
+            System.out.print(" ");
+        }
+        System.out.println("|Pok|Run*");
+        for(int i = 0; i < statementLength; i++){
+            System.out.print("*");
+        }
+        System.out.println();
 
     }
     public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
