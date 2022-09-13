@@ -46,6 +46,44 @@ public class Main {
         //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
         pokemonMenu(allPokemons, eevee);
+
+        // start here
+        enum State {Bag, Battle, Attack, Pokemon};
+        State gameState;
+        // starting pokemon is Eevee
+        Pokemon currentPokemon = eevee;
+        Pokemon opponent = new Pokemon("Mewtwo",40,squirtleAttacks,false);
+        while (currentPokemon.getHealth() > 0) {
+            gameState = State.Battle;
+            printBattle(currentPokemon, opponent, "");
+            // in progress
+        }
+
+
+
+
+        /*
+        Enum state = {Bag, Battle, Attack, Pokemon}
+Main method
+//currentPokemon = OUR Pokemon
+Pokemon currentPokemon
+Initialize bag (Item[] bag)
+Declare and initialize Pokemon objects (6) (Pokemon[] pokemons)
+Initialization of opponent’s Pokemon object AFTER getting user Pokemon choice//figure out algorithm
+Gameplay (while currentPokemon.getHealth() > 0)
+State = Battle
+printBattle
+Take in input for what the user wants to do (according to this, update state)
+switch (state)
+Case: bag, attack, pokemon, call corresponding methods
+State = battle
+printBattle
+Check opponent’s health (if health is 0, end game because user won)
+Opponent’s turn
+Restart loop
+
+         */
+
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -55,7 +93,7 @@ public class Main {
         attacks[num].use(currentPokemon);
     }
 
-    public static void printBattle(Pokemon pokemon, Pokemon opponent) { //test
+    public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
         System.out.println("******************************");
         int opponentNameAndLevel = 23 - opponent.getName().length() - Integer.toString(opponent.getLevel()).length();
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
