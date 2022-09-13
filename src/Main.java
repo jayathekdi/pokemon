@@ -45,7 +45,20 @@ public class Main {
         Item[] bag = new Item[]{potion, pokeball, superPotion};
         //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
-        printBattle(eevee, eevee);
+        pokemonMenu(allPokemons, eevee);
+
+        // start here
+        enum State {Bag, Battle, Attack, Pokemon};
+        State gameState;
+        // starting pokemon is Eevee
+        Pokemon currentPokemon = eevee;
+        Pokemon opponent = new Pokemon("Mewtwo",40,squirtleAttacks,false);
+        while (currentPokemon.getHealth() > 0) {
+            gameState = State.Battle;
+            printBattle(currentPokemon, opponent, "");
+            // in progress
+        }
+
     }
 
     public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
@@ -55,7 +68,7 @@ public class Main {
         attacks[num].use(currentPokemon);
     }
 
-    public static void printBattle(Pokemon pokemon, Pokemon opponent) { //test
+    public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
         System.out.println("******************************");
         int opponentNameAndLevel = 23 - opponent.getName().length() - Integer.toString(opponent.getLevel()).length();
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
