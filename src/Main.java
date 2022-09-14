@@ -260,6 +260,7 @@ Jaya:
                 }
             }
         }
+        System.out.println("That is not a valid Pokemon.");
         return currentPokemon;
 
     }
