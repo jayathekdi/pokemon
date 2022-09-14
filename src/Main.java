@@ -11,7 +11,7 @@ public class Main {
         Attack hypnosis = new Attack("Hypnosis", 376);
         Attack eggBomb = new Attack("eggBomb", 2);
         Attack poisonLick = new Attack("poisonLick", 42);
-        Attack rainDance = new Attack("RainDance", 563);
+        Attack rainDance = new Attack("RainDance", 63);
         Attack heatWave = new Attack("HeatWave", 3);
         Attack revenge = new Attack("Revenge", 15);
         Attack dive = new Attack("Dive", 6);
@@ -33,7 +33,7 @@ public class Main {
         Attack[] snorlaxAttacks = new Attack[]{shockWave, gastroAcid, auraSphere, toxicSpikes};
         Pokemon charmander = new Pokemon("Charmander", 60, charmanderAttacks, false);
         Pokemon ditto = new Pokemon("Ditto", 55, dittoAttacks, false);
-        Pokemon eevee = new Pokemon("Eevee", 3, eeveeAttacks, true);
+        Pokemon eevee = new Pokemon("Eevee", 30, eeveeAttacks, true);
         Pokemon squirtle = new Pokemon("Squirtle", 28, squirtleAttacks, false);
         Pokemon pikachu = new Pokemon("Pikachu", 110, pikachuAttacks, false);
         Pokemon snorlax = new Pokemon("Snorlax", 50, snorlaxAttacks, false);
@@ -45,27 +45,57 @@ public class Main {
         Item[] bag = new Item[]{potion, pokeball, superPotion};
         //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
-        pokemonMenu(allPokemons, eevee);
 
-        // start here
         enum State {Bag, Battle, Attack, Pokemon};
         State gameState;
         // starting pokemon is Eevee
         Pokemon currentPokemon = eevee;
         Pokemon opponent = new Pokemon("Mewtwo",40,squirtleAttacks,false);
+        printBattle(currentPokemon, opponent, "");
         while (currentPokemon.getHealth() > 0) {
             gameState = State.Battle;
-            printBattle(currentPokemon, opponent, "");
-            // in progress
+            System.out.print("Enter your next move (Atk, Bag, Pok, Run): ");
+            String response = input.nextLine();
+            String statement = "";
+            switch (response) {
+                case "Atk":
+                    gameState = State.Attack;
+                    statement = currentPokemon.getName() + attacksMenu(currentPokemon.getAttacks(),opponent);
+                    break;
+                case "Bag":
+                    gameState = State.Bag;
+                    statement = bag(bag, currentPokemon);
+                    break;
+                case "Pok":
+                    gameState = State.Pokemon;
+                    currentPokemon = pokemonMenu(allPokemons, currentPokemon);
+                    break;
+                case "Run":
+                    System.out.println("You successfully ran away!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("That is not a valid move.");
+                    break;
+            }
+            gameState = State.Battle;
+            printBattle(currentPokemon, opponent, statement);
+            if (opponent.getHealth() <= 0) {
+                System.out.println("You beat " + opponent.getName() + "! Congratulations!");
+                break;
+            }
+            String statement2 = moveOpponent(opponent, currentPokemon);
+            printBattle(currentPokemon, opponent, statement2);
         }
 
     }
 
-    public static void moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
+    public static String moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
         Attack[] attacks = opponent.getAttacks();
         Random random = new Random();
         int num = random.nextInt(4);
         attacks[num].use(currentPokemon);
+        return opponent.getName() + " used " + attacks[num].getName();
     }
 
     public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
@@ -76,7 +106,7 @@ public class Main {
             System.out.print(" ");
         }
         System.out.println("*");
-        System.out.print("*HP: " + opponent.getLevel());
+        System.out.print("*HP: " + opponent.getHealth());
         int opponentHP = 25 - Integer.toString(opponent.getLevel()).length();
         for (int i = 0; i < opponentHP - 1; i++) {
             System.out.print(" ");
@@ -137,8 +167,9 @@ public class Main {
         // change pokemon
         for (int i = 0; i < allPokemons.length; i++) {
             if (allPokemons[i].getName().equals(response)) {
-                if (allPokemons[i].isCurrent())
+                if (allPokemons[i].isCurrent()) {
                     return allPokemons[i];
+                }
                 else {
                     currentPokemon.setCurrent(false);
                     allPokemons[i].setCurrent(true);
@@ -170,12 +201,14 @@ public class Main {
         String response = input.nextLine();
         for (int i = 0; i < bag.length; i++) {
             if (bag[i].getName().equals(response) && bag[i].getQuantity() > 0) {
-                bag[i].use(pokemon);
+                if (bag[i].use(pokemon)) {
+                    System.out.println("You used the Pokeball and won the game!");
+                    System.exit(0);
+                }
                 return pokemon.getName() + " used " + bag[i].getName();
             }
-            else
-                System.out.println("That item does not exist.");
         }
+        System.out.println("That item does not exist.");
         return pokemon.getName() + " chose an item that doesn't exist.";
     }
     public static String attacksMenu(Attack[] attacks, Pokemon opponent){

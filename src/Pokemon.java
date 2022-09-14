@@ -9,7 +9,7 @@ public class Pokemon {
         this.name = name;
         this.level = level;
         this.attacks = attacks;
-        this.health = level * 3;
+        this.health = level * 10;
         this.isCurrent = isCurrent;
     }
 
