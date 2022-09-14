@@ -1,5 +1,24 @@
 import java.util.*;
 public class Main {
+    /*
+Division of code:
+Sarah:
+    Main class:
+    - initialized all attacks, pokemons, and items in the main method
+    - printBattle method
+    - printing part of pokemonMenu
+    - printing part of bag method
+    - printing part of attacksMenu
+    Entire Pokemon class
+
+Jaya:
+    Main class:
+    - main method except for initializations
+    - moveOpponent method
+    - input part of pokemonMenu, bag, and attacksMenu methods
+    Entire Item class
+    Entire Attack class
+    */
     public static void main(String[] args) {
         Attack flameBall = new Attack("FlameBall", 50);
         Attack karateChop = new Attack("KarateChop", 293);
@@ -38,12 +57,10 @@ public class Main {
         Pokemon pikachu = new Pokemon("Pikachu", 110, pikachuAttacks, false);
         Pokemon snorlax = new Pokemon("Snorlax", 50, snorlaxAttacks, false);
         Scanner input = new Scanner(System.in);
-        //attacksMenu(eeveeAttacks, eevee);
         Item potion = new Item("Potion", 50, 3);
         Item pokeball = new Item("Pokeball", 0, 1);
         Item superPotion = new Item("SuperPotion", 100, 2);
         Item[] bag = new Item[]{potion, pokeball, superPotion};
-        //bag(bag, eevee);
         Pokemon[] allPokemons = new Pokemon[]{charmander, ditto, eevee, squirtle, pikachu, snorlax};
 
         enum State {Bag, Battle, Attack, Pokemon};
@@ -198,7 +215,7 @@ public class Main {
 
     }
     public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
-        // print the menu
+        // print the menu--Sarah's part
         System.out.println("******************************\n*Pokemon                     *\n*----------------------------*");
         String largestLevel = "";
         for(int i = 0; i < allPokemons.length - 1; i++){
@@ -226,7 +243,7 @@ public class Main {
         }
         System.out.println("******************************");
 
-        // take in user input for which pokemon they would like to choose
+        // take in user input for which pokemon they would like to choose--Jaya's part
         Scanner input = new Scanner(System.in);
         System.out.print("Which Pokemon would you like to choose? ");
         String response = input.nextLine();
@@ -247,6 +264,7 @@ public class Main {
 
     }
     public static String bag(Item[] bag, Pokemon pokemon){
+        // printing--Sarah's part
         System.out.println("******************************\n*Bag                         *\n*----------------------------*");
         for(int i = 0; i < bag.length; i++){
             if (bag[i].getQuantity() == 0)
@@ -261,7 +279,7 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
-        // take in user input for which item they would like to choose
+        // take in user input for which item they would like to choose--Jaya's part
         Scanner input = new Scanner(System.in);
         System.out.print("Which item would you like to choose? ");
         String response = input.nextLine();
@@ -278,6 +296,7 @@ public class Main {
         return pokemon.getName() + " chose an item that doesn't exist.";
     }
     public static String attacksMenu(Attack[] attacks, Pokemon opponent){
+        // printing--Sarah's part
         System.out.println("******************************\n*Attacks                     *\n*----------------------------*");
         for(int i = 0; i < attacks.length; i++){
             System.out.print("*" + attacks[i].getName());
@@ -290,7 +309,7 @@ public class Main {
             System.out.println("*                            *");
         }
         System.out.println("******************************");
-        // take in user input for which attack they would like to choose
+        // take in user input for which attack they would like to choose--Jaya's part
         Scanner input = new Scanner(System.in);
         System.out.print("Which attack would you like to choose? ");
         String response = input.nextLine();
