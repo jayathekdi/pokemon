@@ -169,14 +169,14 @@ public class Main {
             System.out.println("*");
         }
         System.out.print("*");
-        for (int i = 0; i < statementLength - 2 - pokemon.getName().length() - 6 - Integer.toString(pokemon.getLevel()).length(); i++) {
+        for (int i = 0; i < statementLength - 2 - pokemon.getName().length() - 5 - Integer.toString(pokemon.getLevel()).length(); i++) {
             System.out.print(" ");
         }
-        System.out.print(opponent.getName() + " Lvl " + opponent.getLevel() + "*\n*");
+        System.out.print(pokemon.getName() + " Lvl " + pokemon.getLevel() + "*\n*");
         for (int i = 0; i < statementLength - 2 - 4 - Integer.toString(pokemon.getHealth()).length(); i++) {
             System.out.print(" ");
         }
-        System.out.println("HP: " + opponent.getHealth() + "*");
+        System.out.println("HP: " + pokemon.getHealth() + "*");
         for(int i = 0; i < statementLength; i++){
             System.out.print("_");
         }
