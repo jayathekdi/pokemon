@@ -120,20 +120,63 @@ public class Main {
             System.out.print(" ");
         }
         System.out.println("*");
-        System.out.println("*                        0   *\n*                       -|-  *\n*                       / \\  *\n*                            *");
-        System.out.println("*   0                        *\n*  -|-                       *\n*  / \\                       *");
-        String pokemonAndLevelLength = pokemon.getName() + " Lvl " + pokemon.getLevel();
-        String HPLength = "HP: " + pokemon.getHealth();
+        for(int i = 0; i <= 2; i++){
+            System.out.print("*");
+            if(i == 0){
+                for(int j = 0; j < statementLength - 6; j++){
+                    System.out.print(" ");
+                }
+                System.out.println("0   *");
+            }
+            if(i == 1){
+                for(int j = 0; j < statementLength - 7; j++){
+                    System.out.print(" ");
+                }
+                System.out.println("-|-  *");
+            }
+            if(i == 2){
+                for(int j = 0; j < statementLength - 7; j++){
+                    System.out.print(" ");
+                }
+                System.out.println("/ \\  *");
+                }
+            }
         System.out.print("*");
-        for(int i = 0; i < 28 - pokemonAndLevelLength.length(); i++){
+        for(int i = 0; i < statementLength - 2; i++){
             System.out.print(" ");
         }
-        System.out.println(pokemonAndLevelLength + "*");
+        System.out.println("*");
+        for(int i = 0; i <= 2; i++){
+            System.out.print("*");
+            if(i == 0){
+                System.out.print("   0");
+                for(int j = 0; j < statementLength - 6; j++){
+                    System.out.print(" ");
+                }
+            }
+            if(i == 1){
+                System.out.print("  -|-");
+                for(int j = 0; j < statementLength - 7; j++){
+                    System.out.print(" ");
+                }
+            }
+            if(i == 2){
+                System.out.print("  / \\");
+                for(int j = 0; j < statementLength - 7; j++){
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("*");
+        }
         System.out.print("*");
-        for(int i = 0; i < 28 - HPLength.length(); i++){
+        for (int i = 0; i < statementLength - 2 - pokemon.getName().length() - 6 - Integer.toString(pokemon.getLevel()).length(); i++) {
             System.out.print(" ");
         }
-        System.out.println(HPLength + "*");
+        System.out.print(opponent.getName() + " Lvl " + opponent.getLevel() + "*\n*");
+        for (int i = 0; i < statementLength - 2 - 4 - Integer.toString(pokemon.getHealth()).length(); i++) {
+            System.out.print(" ");
+        }
+        System.out.println("HP: " + opponent.getHealth() + "*");
         for(int i = 0; i < statementLength; i++){
             System.out.print("_");
         }
