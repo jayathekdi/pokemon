@@ -69,12 +69,12 @@ Jaya:
         Pokemon currentPokemon = eevee;
         Pokemon opponent = new Pokemon("Mewtwo",40,squirtleAttacks,false);
         printBattle(currentPokemon, opponent, "");
-        while (currentPokemon.getHealth() > 0) {
+        while (currentPokemon.getHealth() > 0) { // loop until the end of the game
             gameState = State.Battle;
             System.out.print("Enter your next move (Atk, Bag, Pok, Run): ");
             String response = input.nextLine();
             String statement = "";
-            switch (response) {
+            switch (response) { // based on their move, it runs the corresponding method
                 case "Atk":
                     gameState = State.Attack;
                     statement = currentPokemon.getName() + attacksMenu(currentPokemon.getAttacks(),opponent);
@@ -97,7 +97,7 @@ Jaya:
             }
             gameState = State.Battle;
             printBattle(currentPokemon, opponent, statement);
-            if (opponent.getHealth() <= 0) {
+            if (opponent.getHealth() <= 0) { // check if the opponent has died
                 System.out.println("You beat " + opponent.getName() + "! Congratulations!");
                 break;
             }
@@ -110,14 +110,14 @@ Jaya:
     public static String moveOpponent(Pokemon opponent, Pokemon currentPokemon) {
         Attack[] attacks = opponent.getAttacks();
         Random random = new Random();
-        int num = random.nextInt(4);
+        int num = random.nextInt(4); // chooses an attack to use at random
         attacks[num].use(currentPokemon);
         return opponent.getName() + " used " + attacks[num].getName();
     }
 
     public static void printBattle(Pokemon pokemon, Pokemon opponent, String statement) { //test
         int statementLength;
-        if(statement.length() < 20){
+        if(statement.length() < 20){ //default length is 20
             statementLength = 30;
         }
         else{
@@ -126,7 +126,7 @@ Jaya:
         for(int i = 0; i < statementLength; i++){
             System.out.print("*");
         }
-        System.out.println();
+        System.out.println(); //opponent name, health, level. Repeat for user
         System.out.print("*" + opponent.getName() + " Lvl " + opponent.getLevel());
         for (int i = 6 + opponent.getName().length() + Integer.toString(opponent.getLevel()).length(); i < statementLength - 1; i++) {
             System.out.print(" ");
@@ -137,10 +137,10 @@ Jaya:
             System.out.print(" ");
         }
         System.out.println("*");
-        for(int i = 0; i <= 2; i++){
+        for(int i = 0; i <= 2; i++){ //body
             System.out.print("*");
             if(i == 0){
-                for(int j = 0; j < statementLength - 6; j++){
+                for(int j = 0; j < statementLength - 6; j++){//Body for opponent. Repeat for user
                     System.out.print(" ");
                 }
                 System.out.println("0   *");
@@ -190,7 +190,7 @@ Jaya:
             System.out.print(" ");
         }
         System.out.print(pokemon.getName() + " Lvl " + pokemon.getLevel() + "*\n*");
-        for (int i = 0; i < statementLength - 2 - 4 - Integer.toString(pokemon.getHealth()).length(); i++) {
+        for (int i = 0; i < statementLength - 2 - 4 - Integer.toString(pokemon.getHealth()).length(); i++) { //prints spaces after level statement
             System.out.print(" ");
         }
         System.out.println("HP: " + pokemon.getHealth() + "*");
@@ -198,7 +198,7 @@ Jaya:
             System.out.print("_");
         }
         System.out.println();
-        System.out.print("*" + statement);
+        System.out.print("*" + statement); //prints statement
         for(int i = statement.length(); i < 20; i++){
             System.out.print(" ");
         }
@@ -216,24 +216,24 @@ Jaya:
     }
     public static Pokemon pokemonMenu(Pokemon[] allPokemons, Pokemon currentPokemon){
         // print the menu--Sarah's part
-        System.out.println("******************************\n*Pokemon                     *\n*----------------------------*");
+        System.out.println("******************************\n*Pokemon                     *\n*----------------------------*"); //Pokemon heading
         String largestLevel = "";
         for(int i = 0; i < allPokemons.length - 1; i++){
             if (allPokemons[i].isCurrent())
                 continue;
             if(allPokemons[i].getLevel() > allPokemons[i + 1].getLevel()){
-                largestLevel = Integer.toString(allPokemons[i].getLevel());
+                largestLevel = Integer.toString(allPokemons[i].getLevel()); //gets length of largest level
             }
         }
         for(int i = 0; i < allPokemons.length; i++){
-            if (allPokemons[i].isCurrent())
+            if (allPokemons[i].isCurrent()) //Jaya did this--don't include the pokemon in the list
                 continue;
             System.out.print("*Lvl");
             for (int k = Integer.toString(allPokemons[i].getLevel()).length(); k <= largestLevel.length(); k++){
                 System.out.print(" ");
             }
             System.out.print(allPokemons[i].getLevel() + " " + allPokemons[i].getName());
-            for(int j = 0; j < 23 - allPokemons[i].getName().length() - largestLevel.length(); j++){
+            for(int j = 0; j < 23 - allPokemons[i].getName().length() - largestLevel.length(); j++){ //prints spaces following Pokemon level length
                 System.out.print(" ");
             }
             System.out.println("*");
@@ -248,7 +248,7 @@ Jaya:
         System.out.print("Which Pokemon would you like to choose? ");
         String response = input.nextLine();
         // change pokemon
-        for (int i = 0; i < allPokemons.length; i++) {
+        for (int i = 0; i < allPokemons.length; i++) { // iterate through allPokemons and check if that element has the name the user is looking for
             if (allPokemons[i].getName().equals(response)) {
                 if (allPokemons[i].isCurrent()) {
                     return allPokemons[i];
@@ -270,9 +270,9 @@ Jaya:
         for(int i = 0; i < bag.length; i++){
             if (bag[i].getQuantity() == 0)
                 continue;
-            System.out.print("*" + bag[i].getQuantity() + "x " + bag[i].getName());
+            System.out.print("*" + bag[i].getQuantity() + "x " + bag[i].getName()); //prints bag quantity
             for(int j = 0; j < 26 - bag[i].getName().length() - Integer.toString(bag[i].getQuantity()).length(); j++){
-                System.out.print(" ");
+                System.out.print(" "); //prints blanks after items
             }
             System.out.println("*");
         }
@@ -284,7 +284,7 @@ Jaya:
         Scanner input = new Scanner(System.in);
         System.out.print("Which item would you like to choose? ");
         String response = input.nextLine();
-        for (int i = 0; i < bag.length; i++) {
+        for (int i = 0; i < bag.length; i++) { // iterate through bag and check if the name of the item is the user's response
             if (bag[i].getName().equals(response) && bag[i].getQuantity() > 0) {
                 if (bag[i].use(pokemon)) {
                     System.out.println("You used the Pokeball and won the game!");
@@ -302,7 +302,7 @@ Jaya:
         for(int i = 0; i < attacks.length; i++){
             System.out.print("*" + attacks[i].getName());
             for(int j = 0; j < 28 - attacks[i].getName().length(); j++){
-                System.out.print(" ");
+                System.out.print(" "); //prints spaces after name
             }
             System.out.println("*");
         }
@@ -314,7 +314,7 @@ Jaya:
         Scanner input = new Scanner(System.in);
         System.out.print("Which attack would you like to choose? ");
         String response = input.nextLine();
-        for (int i = 0; i < attacks.length; i++) {
+        for (int i = 0; i < attacks.length; i++) { // iterate through attacks to find the chosen attack
             if (attacks[i].getName().equals(response)) {
                 attacks[i].use(opponent);
                 return " used " + attacks[i].getName();

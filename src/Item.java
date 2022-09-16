@@ -17,15 +17,15 @@ public class Item {
             return true;
         }
 
-        if (quantity == 0) {
-            System.out.println("Error");
+        if (quantity == 0) { // if there are none left
+            System.out.println("There are no more of this item left.");
             return false;
         }
 
         if (pokemon.getHealth() + healing <= pokemon.getLevel() * 10) { // if the pokemon is not at max health
             pokemon.setHealth(pokemon.getHealth() + healing);
         }
-        else {
+        else { // set health to max health
             pokemon.setHealth(pokemon.getLevel() * 10);
         }
         return false;

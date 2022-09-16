@@ -6,7 +6,7 @@ public class Attack {
         this.name = name;
     }
     public void use(Pokemon opponent) {
-        if (damage <= opponent.getHealth()) {
+        if (damage <= opponent.getHealth()) { // so that health won't become negative
             opponent.setHealth(opponent.getHealth() - damage);
         }
         else {
